@@ -1,15 +1,17 @@
 <template lang="">
-  <div>Transactons is here</div>
-  <div class="item" v-for="transaction in transactions" :key="transaction.id">
-    <router-link
-      :to="{
-        name: 'transaction-details-route',
-        params: { id: transaction.id },
-      }"
-      >{{ transaction.name }}</router-link
-    >
-    <p>Price: {{ transaction.price }}</p>
+  <div v-if="transactions.length">
+    <div class="item" v-for="transaction in transactions" :key="transaction.id">
+      <router-link
+        :to="{
+          name: 'transaction-details-route',
+          params: { id: transaction.id },
+        }"
+        >{{ transaction.name }}</router-link
+      >
+      <p>Price: {{ transaction.price }}</p>
+    </div>
   </div>
+  <div v-else>Transaction Loading ...</div>
 </template>
 <script>
 export default {
