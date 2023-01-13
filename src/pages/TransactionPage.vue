@@ -15,16 +15,13 @@
 export default {
   data() {
     return {
-      transactions: [
-        {
-          id: 1,
-          name: "Shopping",
-          price: 100,
-        },
-        { id: 2, name: "Pay house money", price: 200 },
-        { id: 3, name: "Pay internet money", price: 50 },
-      ],
+      transactions: [],
     };
+  },
+  created() {
+    fetch("http://localhost:3000/transactions")
+      .then((response) => response.json())
+      .then((data) => (this.transactions = data));
   },
 };
 </script>
