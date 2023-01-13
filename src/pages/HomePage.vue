@@ -1,19 +1,27 @@
 <template lang="">
-  <p>{{ fullName }}</p>
-  <button @click="onChangeSomeThing">Click me!!!</button>
+  <input type="text" v-model="searchText" />
+  <ul>
+    <li v-for="(customer, index) in customersFilled" :key="index">
+      {{ customer }}
+    </li>
+  </ul>
 </template>
 <script>
-import { ref } from "vue";
+import { reactive, computed, ref, watch } from "vue";
 export default {
   setup() {
-    const fullName = ref("Thuan Phat");
-    function onChangeSomeThing() {
-      console.log("running onChangeSomeThing");
-      fullName.value = "Da Thay Doi";
-    }
+    const searchText = ref("");
+    const customers = reactive(["Phat", "Truong", "Minh"]);
+    const customersFilled = computed(() =>
+      customers.filter((customer) => customer.includes(searchText.value))
+    );
+    watch(searchText, (newValue, oldValue) => {
+      console.log(`newValue: ${newValue}, oldValue: ${oldValue}`);
+    });
     return {
-      fullName,
-      onChangeSomeThing,
+      searchText,
+      customersFilled,
+      watch,
     };
   },
 };
