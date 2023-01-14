@@ -15,9 +15,6 @@ export default {
     const customersFilled = computed(() =>
       customers.filter((customer) => customer.includes(searchText.value))
     );
-    watch(searchText, (newValue, oldValue) => {
-      console.log(`newValue: ${newValue}, oldValue: ${oldValue}`);
-    });
     return {
       searchText,
       customersFilled,
