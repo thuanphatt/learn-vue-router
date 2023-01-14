@@ -1,25 +1,16 @@
 <template lang="">
-  <input type="text" v-model="searchText" />
-  <ul>
-    <li v-for="(customer, index) in customersFilled" :key="index">
-      {{ customer }}
-    </li>
-  </ul>
+  <h1>Overview page is here</h1>
 </template>
 <script>
-import { reactive, computed, ref, watch } from "vue";
 export default {
-  setup() {
-    const searchText = ref("");
-    const customers = reactive(["Phat", "Truong", "Minh"]);
-    const customersFilled = computed(() =>
-      customers.filter((customer) => customer.includes(searchText.value))
-    );
+  data() {
     return {
-      searchText,
-      customersFilled,
-      watch,
+      count: 0,
     };
+  },
+  created() {
+    console.log(this.$store.state.count);
+    this.count = this.$store.state.count;
   },
 };
 </script>
