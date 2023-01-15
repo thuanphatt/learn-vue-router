@@ -7,19 +7,17 @@
   <div v-else>Loading {{ $route.params.id }} ...</div>
 </template>
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 export default {
-  computed: {
-    transaction() {
-      return this.$store.state.transaction;
-    },
-    transactionFilter() {
-      return this.$store.getters.transactionFilterd;
-    },
-  },
-  created() {
-    this.$store.dispatch("fetchTraction", {
-      id: this.$route.params.id,
-    });
+  setup() {
+    const route = useRoute();
+    const store = useStore();
+    store.dispatch("fetchTraction", { id: route.params.id });
+    return {
+      transaction: computed(() => store.state.transaction),
+    };
   },
 };
 </script>
