@@ -1,16 +1,12 @@
 <template lang="">
   <h1>Overview page is here</h1>
+  <button @click="diy.setCount">Click</button>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      count: 0,
-    };
-  },
+  inject: ["diy"],
   created() {
-    console.log(this.$store.state.count);
-    this.count = this.$store.state.count;
+    // console.log(diy);
   },
 };
 </script>
